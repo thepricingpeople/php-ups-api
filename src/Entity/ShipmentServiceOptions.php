@@ -147,7 +147,7 @@ class ShipmentServiceOptions implements NodeInterface
         }
 
         if (isset($this->DeliveryConfirmation)) {
-            $node->appendChild($document->createElement('DeliveryConfirmation'));
+            $node->appendChild($this->DeliveryConfirmation->toNode($document));
         }
 
         if (isset($this->SaturdayPickup)) {
