@@ -51,6 +51,11 @@ class ShipmentServiceOptions implements NodeInterface
     /**
      * @var
      */
+    public $DeliveryConfirmation;
+
+    /**
+     * @var
+     */
     private $internationalForms;
 
     /**
@@ -105,6 +110,9 @@ class ShipmentServiceOptions implements NodeInterface
             if (isset($response->DeliverToAddresseeOnlyIndicator)) {
                 $this->DeliverToAddresseeOnlyIndicator = $response->DeliverToAddresseeOnlyIndicator;
             }
+            if (isset($response->DeliveryConfirmation)) {
+                $this->DeliveryConfirmation = $response->DeliveryConfirmation;
+            }
             if (isset($response->InternationalForms)) {
                 $this->setInternationalForms($response->InternationalForms);
             }
@@ -136,6 +144,10 @@ class ShipmentServiceOptions implements NodeInterface
 
         if (isset($this->DeliverToAddresseeOnlyIndicator)) {
             $node->appendChild($document->createElement('DeliverToAddresseeOnlyIndicator'));
+        }
+
+        if (isset($this->DeliveryConfirmation)) {
+            $node->appendChild($document->createElement('DeliveryConfirmation'));
         }
 
         if (isset($this->SaturdayPickup)) {
@@ -400,4 +412,22 @@ class ShipmentServiceOptions implements NodeInterface
         $this->DeliverToAddresseeOnlyIndicator = $DeliverToAddresseeOnlyIndicator;
         return $this;
     }
+
+    /**
+     * @return DeliveryConfirmation
+     */
+    public function getDeliveryConfirmation()
+    {
+        return $this->DeliveryConfirmation;
+    }
+
+    /**
+     * @param DeliveryConfirmation $DeliveryConfirmation
+     */
+    public function setDeliveryConfirmation($DeliveryConfirmation)
+    {
+        $this->DeliveryConfirmation = $DeliveryConfirmation;
+    }
+
+
 }
