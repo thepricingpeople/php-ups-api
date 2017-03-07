@@ -17,6 +17,12 @@ class DeliveryConfirmation
     public $DCISType;
     public $DCISNumber;
 
+    const SIGNATURE_REQUIRED = 1;
+
+    const ADULT_SIGNATURE_REQUIRED = 2;
+
+
+
     public function __construct($response = null)
     {
         if (null != $response) {
