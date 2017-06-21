@@ -18,6 +18,11 @@ class PackageServiceOptions implements NodeInterface
     private $cod;
 
     /**
+     * @var DeclaredValue
+     */
+    private $declaredValue;
+
+    /**
      * @var InsuredValue
      */
     private $insuredValue;
@@ -45,6 +50,9 @@ class PackageServiceOptions implements NodeInterface
         if (null !== $parameters) {
             if (isset($parameters->COD)) {
                 $this->setCOD(new COD($parameters->COD));
+            }
+            if (isset($parameters->DeclaredValue)) {
+                $this->setDeclaredValue(new DeclaredValue($parameters->DeclaredValue));
             }
             if (isset($parameters->InsuredValue)) {
                 $this->setInsuredValue(new InsuredValue($parameters->InsuredValue));
@@ -79,8 +87,27 @@ class PackageServiceOptions implements NodeInterface
         if ($this->getInsuredValue()) {
             $node->appendChild($this->getInsuredValue()->toNode($document));
         }
+        if ($this->getDeclaredValue()) {
+            $node->appendChild($this->getDeclaredValue()->toNode($document));
+        }
 
         return $node;
+    }
+
+    /**
+     * @return DeclaredValue|null
+     */
+    public function getDeclaredValue()
+    {
+        return $this->declaredValue;
+    }
+
+    /**
+     * @param $var
+     */
+    public function setDeclaredValue($var)
+    {
+        $this->declaredValue = $var;
     }
 
     /**
